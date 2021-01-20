@@ -93,7 +93,7 @@ class Blockchain:
             for b in self.cadeia:
                 dadosBlocos.append(b.__dict__)
 
-            file = open("cadeia.txt", "w+")
+            file = open("db/cadeia.txt", "w+")
             file.write(json.dumps({"cadeia": dadosBlocos}))
             file.close()
 
@@ -101,7 +101,7 @@ class Blockchain:
                 if listaNos[i]["ip"] == ipNo:
                     listaNos[i]["saldo"] += 1
 
-            file = open("nos.txt", "w+")
+            file = open("db/nos.txt", "w+")
             file.write(json.dumps({"listaNos": listaNos}))
             file.close()
 
@@ -126,7 +126,7 @@ aplicacao = Flask(__name__)
 blockchain = Blockchain()
 
 try:
-    file2 = open("nos.txt","r")
+    file2 = open("db/nos.txt","r")
     dadosFile2 = file2.read()
     if dadosFile2!=None and dadosFile2!="":
         dadosFile2 = json.loads(dadosFile2)
@@ -140,7 +140,7 @@ finally:
         pass
 
 try:
-    file2 = open("cadeia.txt","r")
+    file2 = open("db/cadeia.txt","r")
     dadosFile2 = file2.read()
     if dadosFile2!=None and dadosFile2!="":
         dadosFile2 = json.loads(dadosFile2)
@@ -282,7 +282,7 @@ def atualizar_cadeia():
             for bloco in blockchain.cadeia:
                 dadosBlocos.append(bloco.__dict__)
 
-            file = open("cadeia.txt", "w+")
+            file = open("db/cadeia.txt", "w+")
             file.write(json.dumps({"cadeia": dadosBlocos}))
             file.close()
 
@@ -357,7 +357,7 @@ def atualizar_nos():
 
     listaNos = requisicao["listaNos"]
 
-    file = open("nos.txt","w+")
+    file = open("db/nos.txt","w+")
     file.write(json.dumps({"listaNos": listaNos}))
     file.close()
 
